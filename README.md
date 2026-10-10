@@ -16,13 +16,14 @@ https://github.com/StreetYo/lizun-ip-location
 To install a fixed version, use the link of a release instead, for example
 `https://github.com/StreetYo/lizun-ip-location/releases/tag/v1.0.0`.
 
-The widget needs a Lizun build with `network.request` and `clipboard.writeText`.
+The widget needs a Lizun build with `network.request`, `clipboard.writeText` and `island`.
 
 ## Using it
 
 - The widget checks when it starts, every few minutes (5 by default), when you press the
   arrows in its corner, and when you open the island and the last check is older than 20
-  seconds. "checked 12 s ago" at the bottom says how fresh it is.
+  seconds. "checked 12 s ago" at the bottom says how fresh it is. When the closed island is set
+  to show nothing, the periodic checks wait while the island is closed.
 - Click the IP address to copy it. The IPv6 address, shown under it when this computer has
   one, copies the same way.
 - When the IP address or the country changes, the name and address light up and the bottom line
@@ -68,7 +69,7 @@ The widget is plain HTML, CSS and JavaScript with no build step:
 |---|---|
 | `manifest.json` | Id, size, permissions, network, settings and their Russian translation |
 | `index.html`, `style.css` | Page shown in the island, built on the island theme (`--lz-*` variables) |
-| `main.js` | Checks and when to check, drawing, copying, settings and language |
+| `main.js` | Checks and when to check (start, timer, island opening), drawing, copying, settings and language |
 | `lookup.js` | Asks the services in turn and turns their answers into one shape |
 | `place.js` | Flags, country names, short provider names, what counts as a change |
 | `island.js` | What the closed island shows |

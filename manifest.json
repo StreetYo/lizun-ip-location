@@ -13,7 +13,7 @@
       "key": "interval",
       "type": "number",
       "label": "Check every",
-      "description": "Opening the island also checks again when the last check is older than 20 seconds.",
+      "description": "Opening the island also checks when the last check is older than 20 s. With the closed island set to Never, it checks only while the island is open.",
       "default": 5,
       "min": 1,
       "max": 60,
@@ -46,7 +46,7 @@
       "settings": {
         "interval": {
           "label": "Проверять каждые",
-          "description": "Открытие острова тоже проверяет снова, если с последней проверки прошло больше 20 секунд.",
+          "description": "Открытие острова тоже проверяет, если с последней проверки прошло больше 20 с. Если в закрытом острове ничего не показывать, проверка идёт только при открытом острове.",
           "unit": "мин"
         },
         "showIpv6": {

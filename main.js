@@ -1,4 +1,4 @@
-import { clipboard, language, ready, settings, storage } from '/__sdk/index.js';
+import { clipboard, island, language, ready, settings, storage } from '/__sdk/index.js';
 import { showInIsland } from './island.js';
 import { lookUpIpv6, lookUpPlace } from './lookup.js';
 import { canDrawFlags, countryName, flag, moved } from './place.js';
@@ -54,6 +54,7 @@ let ipv6Lookup = null;
 let failed = false;
 /** When the last check started, successful or not. */
 let lastAttempt = 0;
+let islandOpen = false;
 
 function placeName(p) {
   return p.city || p.region || countryName(lang, p) || '';
@@ -109,8 +110,12 @@ function checkIpv6() {
   });
 }
 
-/** Whether the periodic check is due, from timestamps so sleep and reloads do not matter. */
+/**
+ * Whether the periodic check is due, from timestamps so sleep and reloads do not matter. While
+ * the island is closed it is only due when the closed island shows the place.
+ */
 function due(now) {
+  if (!islandOpen && options.island === 'never') return false;
   const interval = options.interval * 60 * 1000;
   return now - lastAttempt >= (failed ? Math.min(interval, RETRY_AFTER_FAILURE) : interval);
 }
@@ -217,12 +222,15 @@ view.retry.addEventListener('click', () => check());
 view.emptyRetry.addEventListener('click', () => check());
 view.place.addEventListener('animationend', () => view.place.classList.remove('flash'));
 
-// The island has no "opened" event for widgets: a page that becomes visible, or the pointer
-// coming onto the widget, is when someone looks at it.
-document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && checkIfStale());
+// The pointer coming onto the widget is a look at it too, for example after the island stayed open.
 document.documentElement.addEventListener('pointerenter', checkIfStale);
 
 const context = await ready();
+islandOpen = context.islandOpen === true;
+island.subscribe(({ open }) => {
+  islandOpen = open;
+  if (open) checkIfStale();
+});
 lang = context.language;
 text = TEXTS[lang] ?? TEXTS.en;
 language.subscribe((next) => {

@@ -1,0 +1,64 @@
+{
+  "id": "lizun.ip-location",
+  "name": "IP location",
+  "version": "1.0.0",
+  "author": "Lizun",
+  "description": "Where the internet sees this computer right now: public IP, country, city and provider, handy for checking a VPN",
+  "entry": "index.html",
+  "width": 300,
+  "permissions": ["storage", "activity", "clipboard:write"],
+  "network": ["https://ipwho.is", "https://ipapi.co", "https://ipinfo.io", "https://api6.ipify.org"],
+  "settings": [
+    {
+      "key": "interval",
+      "type": "number",
+      "label": "Check every",
+      "description": "Opening the island also checks again when the last check is older than 20 seconds.",
+      "default": 5,
+      "min": 1,
+      "max": 60,
+      "unit": "min"
+    },
+    {
+      "key": "showIpv6",
+      "type": "toggle",
+      "label": "Show the IPv6 address",
+      "description": "When this computer has one.",
+      "default": true
+    },
+    {
+      "key": "island",
+      "type": "select",
+      "label": "Show in the closed island",
+      "description": "The country, city and provider.",
+      "default": "always",
+      "options": [
+        { "value": "always", "label": "Always" },
+        { "value": "change", "label": "For 30 s after a change" },
+        { "value": "never", "label": "Never" }
+      ]
+    }
+  ],
+  "locales": {
+    "ru": {
+      "name": "IP-адрес и место",
+      "description": "Где интернет видит этот компьютер сейчас: внешний IP, страна, город и провайдер, удобно для проверки VPN",
+      "settings": {
+        "interval": {
+          "label": "Проверять каждые",
+          "description": "Открытие острова тоже проверяет снова, если с последней проверки прошло больше 20 секунд.",
+          "unit": "мин"
+        },
+        "showIpv6": {
+          "label": "Показывать адрес IPv6",
+          "description": "Если он есть у этого компьютера."
+        },
+        "island": {
+          "label": "Показывать в закрытом острове",
+          "description": "Страна, город и провайдер.",
+          "options": { "always": "Всегда", "change": "30 с после смены", "never": "Никогда" }
+        }
+      }
+    }
+  }
+}

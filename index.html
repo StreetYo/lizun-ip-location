@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/__sdk/lizun.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <main class="lz-card" id="card" hidden>
+      <section class="place" id="place">
+        <div class="top">
+          <span class="flag" id="flag"></span>
+          <div class="where">
+            <div class="city" id="city"></div>
+            <div class="region" id="region"></div>
+          </div>
+          <button class="icon-button" id="refresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11a8 8 0 0 0-14.5-4.5M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5M20 20v-4h-4" />
+            </svg>
+          </button>
+        </div>
+        <button class="address" id="ip">
+          <span class="address-text" id="ip-text"></span>
+          <svg class="copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 0 1 2-2h8" />
+          </svg>
+          <span class="note" id="ip-note"></span>
+        </button>
+        <button class="address v6" id="ip6" hidden>
+          <span class="address-text" id="ip6-text"></span>
+          <svg class="copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 0 1 2-2h8" />
+          </svg>
+          <span class="note" id="ip6-note"></span>
+        </button>
+        <div class="provider" id="provider"></div>
+      </section>
+      <footer id="footer">
+        <span class="change" id="change" hidden></span>
+        <span class="status" id="status"></span>
+        <button class="retry" id="retry" hidden></button>
+      </footer>
+    </main>
+    <section class="empty lz-card" id="empty" hidden>
+      <svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" />
+      </svg>
+      <div class="empty-title" id="empty-title"></div>
+      <div class="empty-hint" id="empty-hint"></div>
+      <button class="lz-button" id="empty-retry" hidden></button>
+    </section>
+  </body>
+</html>
